@@ -37,9 +37,12 @@ public class JobsService {
         for(String stackTerm: job.getRequiredStack()) {
             var developers = developersClient.getDevelopers(new GetDevelopersParams(stackTerm));
             if(developers != null && !developers.isEmpty())
-                job.getPossibleCandidates().addAll(developers);
+                for(Developer developer : developers)
+                    if (devRepository.findById(developer.getId()).isEmpty())
+                        devRepository.save(developer);
+
+            job.getPossibleCandidates().addAll(developers);
         }
-        devRepository.saveAll(job.getPossibleCandidates());
         return repository.save(job);
     }
 }

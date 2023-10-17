@@ -28,7 +28,7 @@ public class JobsController {
 
     @PostMapping
     public ResponseEntity<Job> createJob(@RequestBody Job job) {
-        return ResponseEntity.status(200).body(service.createJob(job));
+        return ResponseEntity.status(201).body(service.createJob(job));
     }
 
     @GetMapping("/{id}")

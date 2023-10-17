@@ -25,6 +25,6 @@ public class Job {
     private String enterpriseName;
     private ArrayList<String> requiredStack;
     private ArrayList<String> preferableStack;
-    @OneToMany(targetEntity = Developer.class, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Developer.class, fetch = FetchType.EAGER)
     private Set<Developer> possibleCandidates;
 }
