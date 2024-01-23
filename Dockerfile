@@ -3,6 +3,6 @@ RUN mkdir /app
 WORKDIR /app
 
 ADD . /app/
-RUN mvn package -Dmaven.test.skip
-RUN ls -ltr /app/target
-ENTRYPOINT [ "/app/target/circuitbreaker.jar" ]
+RUN mvn package -Dmaven.test.skip && \
+    curl -O https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/latest/download/opentelemetry-javaagent.jar
+ENTRYPOINT [ "java", "-javaagent:/app/opentelemetry-javaagent.jar", "-jar", "/app/target/circuitbreaker.jar" ]

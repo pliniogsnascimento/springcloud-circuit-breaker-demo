@@ -2,6 +2,7 @@ package com.plinio.circuitbreaker.controllers.v1;
 
 import com.plinio.circuitbreaker.entities.Job;
 import com.plinio.circuitbreaker.services.JobsService;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
